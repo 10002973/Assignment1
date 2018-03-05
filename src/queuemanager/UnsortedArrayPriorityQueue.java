@@ -105,13 +105,13 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                     pos = i;
                 } 
             }
-            //If the highest priority item is not at the end of the array, then it moves the items in the array until the highest priority item is at the end.
-            if (pos != tailIndex - 1){
+            //If the highest priority item is not at the end of the array, then it moves the items in the array down one
+            if (pos != tailIndex){
                 for (int i = pos; i < tailIndex; i++) {
                     storage[i] = storage[i + 1];
                 }  
             }          
-            //Removes the highest priority item.
+            //Removes the item at the end of the array.
             tailIndex = tailIndex - 1;
         }
     }
