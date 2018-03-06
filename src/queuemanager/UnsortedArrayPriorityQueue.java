@@ -5,12 +5,11 @@
  */
 package queuemanager;
 
-/*
+/**
+ *
  * @author Heather Taylor-Stanley 10002973
  * @param <T>
  */
-
-
 public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         
     /**
@@ -106,13 +105,13 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
                     pos = i;
                 } 
             }
-            //If the highest priority item is not at the end of the array, then it moves the items in the array down one
-            if (pos != tailIndex){
+            //If the highest priority item is not at the end of the array, then it moves the items in the array until the highest priority item is at the end.
+            if (pos != tailIndex - 1){
                 for (int i = pos; i < tailIndex; i++) {
                     storage[i] = storage[i + 1];
                 }  
             }          
-            //Removes the item at the end of the array.
+            //Removes the highest priority item.
             tailIndex = tailIndex - 1;
         }
     }
@@ -142,5 +141,4 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         result = result + "]";
         return result;
     }
-
 }
