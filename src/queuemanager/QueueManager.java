@@ -33,6 +33,9 @@ public class QueueManager {
                 break;
             case "ua":
             case "sl":
+                q = new SortedLinkedPriorityQueue<>();
+                System.out.println("Using a sorted linked list.");
+                break;
             case "ul":
             case "h":
             default:
