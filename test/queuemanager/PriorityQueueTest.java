@@ -14,20 +14,14 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Heather
+ * @author Heather Taylor-Stanley 10002973
  */
 public abstract class PriorityQueueTest {
     public PriorityQueue instance;
     
     public PriorityQueueTest() {
     }
-    
-    //@BeforeClass
-    //public abstract void setUpClass();
-    
-//    @AfterClass
-//    public abstract void tearDownClass();
-    
+        
     @Before
     public abstract void setUp();
     
@@ -35,7 +29,7 @@ public abstract class PriorityQueueTest {
     public abstract void tearDown();
 
     /**
-     * Test of add method, of class PriorityQueue.
+     * Test of add method, of class PriorityQueue. Tests adding an item to the array, to check the method inserts correctly.
      */
     @Test
     public void testAdd() throws Exception {
@@ -46,7 +40,7 @@ public abstract class PriorityQueueTest {
     }
 
     /**
-     * Test of head method, of class PriorityQueue.
+     * Test of head method, of class PriorityQueue. Checks that the highest priority item is returned.
      */
     @Test
     public void testHead() throws Exception {
@@ -60,7 +54,7 @@ public abstract class PriorityQueueTest {
     }
     
     /**
-     * Test of head method, of class PriorityQueue.
+     * Test of head method, of class PriorityQueue. Checks that calling the head method on an empty array returns a QueueUnderflow exception.
      */
     @Test (expected =  QueueUnderflowException.class) 
     public void testHeadArrayEmpty() throws Exception {
@@ -69,7 +63,7 @@ public abstract class PriorityQueueTest {
     }
 
     /**
-     * Test of remove method, of class PriorityQueue.
+     * Test of remove method, of class PriorityQueue. Checks that the remove method removes the highest priority item.
      */
     @Test
     public void testRemove() throws Exception {
@@ -80,7 +74,7 @@ public abstract class PriorityQueueTest {
     }
     
     /**
-     * Test of remove method, of class PriorityQueue.
+     * Test of remove method, of class PriorityQueue. Checks that using the remove method on an empty array returns a QueueUnderflow exception.
      */
     @Test (expected =  QueueUnderflowException.class) 
     public void testRemoveArrayEmpty() throws Exception {
@@ -89,7 +83,7 @@ public abstract class PriorityQueueTest {
     }
     
     /**
-     * Test of remove method, of class PriorityQueue.
+     * Test of remove method, of class PriorityQueue. Checks that using remove method on the last item in the array does not cause an error.
      */
     @Test
     public void testRemoveOnlyItemInArray() throws Exception {
@@ -101,7 +95,7 @@ public abstract class PriorityQueueTest {
     }
 
     /**
-     * Test of isEmpty method, of class PriorityQueue.
+     * Test of isEmpty method, of class PriorityQueue. Tests that the isEmpty method returns false if the array is not empty.
      */
     @Test
     public void testIsEmpty() throws Exception {
@@ -114,7 +108,7 @@ public abstract class PriorityQueueTest {
     }
     
     /**
-     * Test of isEmpty method, of class PriorityQueue.
+     * Test of isEmpty method, of class PriorityQueue. Tests that the isEmpty method returns true if the array is empty.
      */
     @Test
     public void testIsEmptyArrayEmpty() throws Exception {
@@ -125,7 +119,7 @@ public abstract class PriorityQueueTest {
     }
     
     /**
-     * Test of toString method, of class PriorityQueue.
+     * Test of toString method, of class PriorityQueue. Tests that using toString on an empty array does not throw an error.
      */
     @Test
     public void testToStringArrayEmpty() throws Exception {
