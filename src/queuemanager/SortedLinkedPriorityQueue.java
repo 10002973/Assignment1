@@ -36,6 +36,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      */
     public void add(T item, int priority){
         Node<T> cur = head;
+        T pos = null;
         //If the array is empty, or the item is higher than the highest priority item in the queue, then the item will be inserted in the head position.
         if (isEmpty() || head.priority < priority) {
             head = new Node<T>(item, priority, head);
@@ -45,12 +46,11 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         else {
             for (Node<T> node = head; node != null; node = node.next) {
                 if (node.priority < priority || node.next == null) {
-                    cur = cur.next;
-                    
+                    pos = node.item;
                 }
             }
             //Inserts the new item in the next node
-            if(cur != null){
+            if(cur != null && cur.item != pos){
                 cur.next = new Node<T>(item, priority, cur.next);
             }
         }
@@ -98,9 +98,9 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         String result = "[";
         for (Node<T> node = head; node != null; node = node.next){
             if (node != head) {
-                result = result + ", ";
+                result = result + ",";
             }
-            result = result + node.item;
+            result += "(" + node.item + ", " + node.priority + ")";
         }
         result = result + "]";
         return result;
