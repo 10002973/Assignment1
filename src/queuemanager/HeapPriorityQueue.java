@@ -136,7 +136,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
         String result = "[";
         for(int i = 1; i <= arraySize; i++){
             //If there is another item in the array, insert a comma into the string.
-            if (heapArray[0]!= null) {
+            if (heapArray[arraySize]!= null && i !=1) {
                 result = result + ", ";
             }
             result += heapArray[i];
