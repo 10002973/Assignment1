@@ -90,6 +90,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
                 head = head.next;
             }
             else{
+                cur = head;
                 //Gets the node before the highest priority item.
                 while(cur != null && cur.item != pos)
                 {
@@ -99,6 +100,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
                 //Deletes the cur node (highest priority item).
                 prev.next = cur.next;
             }
+
         }
     }
     
@@ -121,9 +123,9 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         String result = "[";
         for (Node<T> node = head; node != null; node = node.next){
             if (node != head) {
-                result = result + ", ";
+                result = result + ",";
             }
-            result = result + node.item + node.priority;
+            result += "(" + node.item + ", " + node.priority + ")";
         }
         result = result + "]";
         return result;
