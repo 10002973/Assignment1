@@ -31,7 +31,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
     }
 
     /**
-     * Test of add method, of class UnsortedArrayPriorityQueue. Checks that adding an item with a lower priority correctly adds it to the end of the queue.
+     * Test of add method, of class UnsortedLinkedPriorityQueue. Checks that adding an item with a lower priority correctly adds it to the end of the queue.
      */
     @Test
     public void testAdd() throws Exception {
@@ -45,7 +45,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
     }
    
     /**
-     * Test of remove method, of class UnsortedArrayPriorityQueue. Checks that removing an item from the middle of the array functions correctly.
+     * Test of remove method, of class UnsortedLinkedPriorityQueue. Checks that removing an item from the middle of the array functions correctly.
      */
     @Test
     public void testRemoveMiddle() throws Exception {
@@ -59,7 +59,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
     }
     
     /**
-     * Test of remove method, of class UnsortedArrayPriorityQueue. Checks that removing an item from the start of the array functions correctly.
+     * Test of remove method, of class UnsortedLinkedPriorityQueue. Checks that removing an item from the start of the array functions correctly.
      */
     @Test
     public void testRemoveStart() throws Exception {
