@@ -98,7 +98,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
             int priority = ((PriorityItem<T>) storage[0]).getPriority();
             int pos = 0;
             //Loop through every item in the array
-            for (int i = 0; i < tailIndex; i++) {
+            for (int i = 0; i < tailIndex + 1; i++) {
                 //If the current items priority is higher than the stored priority in the priority variable,
                 //then set priority variable equal to the new priority and set pos equal to the current position in the array.
                 if (((PriorityItem<T>) storage[i]).getPriority() > priority) {
