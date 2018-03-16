@@ -9,7 +9,9 @@ package queuemanager;
  *
  * @author Heather Taylor-Stanley 10002973
  * 
- * Code adapted from Adamchik, V.S (2009) Linked Lists [online]. Available from <https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html> [06 March 2018]
+ * Code in this class is adapted from Adamchik, V.S (2009) Linked Lists [online]. Available from <https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html> [06 March 2018]
+ * 
+ * This class implements a sorted linked priority queue.
  * @param <T>
  */
 public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {  
@@ -35,7 +37,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      * This will add a node according to its priority
      */
     public void add(T item, int priority){
-        Node<T> cur = head;
+        Node<T> sel = head;
         T pos = null;
         //If the array is empty, or the item is higher than the highest priority item in the queue, then the item will be inserted in the head position.
         if (isEmpty() || head.priority < priority) {
@@ -50,8 +52,8 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
                 }
             }
             //Inserts the new item in the next node
-            if(cur != null && cur.item != pos){
-                cur.next = new Node<T>(item, priority, cur.next);
+            if(sel != null && sel.item != pos){
+                sel.next = new Node<T>(item, priority, sel.next);
             }
         }
     }
