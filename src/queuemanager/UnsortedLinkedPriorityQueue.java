@@ -9,10 +9,12 @@ package queuemanager;
  *
  * @author Heather Taylor-Stanley 10002973
  * 
- *  Code adapted from Adamchik, V.S (2009) Linked Lists [online]. Available from <https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html> [06 March 2018]
+ *  Code in this class adapted from Adamchik, V.S (2009) Linked Lists [online]. Available from <https://www.cs.cmu.edu/~adamchik/15-121/lectures/Linked%20Lists/linked%20lists.html> [06 March 2018]
+ * 
+ * This class implements an unsorted linked priority queue.
+ * 
  * @param <T>
  */
-
 public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {  
     //This will track the head node
     private Node<T> head;
@@ -73,32 +75,32 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             throw new QueueUnderflowException();
         } else {
             int priority = head.priority;        
-            Node<T> cur  = head;
-            Node<T> prev = null;
+            Node<T> sel  = head;
+            Node<T> last = null;
             T pos = null;
-            //Loops through the list to get the item with the highest priority. It updates the priority, pos and cur variables each time a higher priority is encountered.
+            //Loops through the list to get the item with the highest priority. It updates the priority, pos and sel variables each time a higher priority is encountered.
             for (Node<T> node = head; node != null; node = node.next) {
                 if (node.priority > priority) {
                     priority = node.priority;
                     pos = node.item;
-                    cur = node;
+                    sel = node;
                 } 
             }
 
             //If the highest priority node is the head, then remove the head node.
-            if (cur == head){
+            if (sel == head){
                 head = head.next;
             }
             else{
-                cur = head;
+                sel = head;
                 //Gets the node before the highest priority item.
-                while(cur != null && cur.item != pos)
+                while(sel != null && sel.item != pos)
                 {
-                   prev = cur;
-                   cur = cur.next;
+                   last = sel;
+                   sel = sel.next;
                 }
-                //Deletes the cur node (highest priority item).
-                prev.next = cur.next;
+                //Deletes the sel node (highest priority item).
+                last.next = sel.next;
             }
 
         }
