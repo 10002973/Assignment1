@@ -7,36 +7,39 @@ package queuemanager;
 
 /**
  *
- * Code adapted from Adamchik, V.S (2009) Heap [online]. Available from <https://www.cs.cmu.edu/~adamchik/15-121/lectures/Binary%20Heaps/code/Heap.java> [09 March 2018].
+ * Code in this class adapted from Adamchik, V.S (2009) Heap [online]. Available from <https://www.cs.cmu.edu/~adamchik/15-121/lectures/Binary%20Heaps/code/Heap.java> [09 March 2018].
+ * 
  * @author Heather Taylor-Stanley 10002973
+ * 
+ * This class implements a heap priority queue.
  */
 
 
 public class HeapPriorityQueue<T> implements PriorityQueue<T>{  
    //Stores the size of the array
-   private int arraySize;            
+   private int capacity;            
    //Stores the array
-   private Object[] heapArray; 
+   private Object[] storage; 
 
    public HeapPriorityQueue()
    {
-        arraySize = 0;
-        heapArray = (T[]) new Object[2];
+        capacity = 0;
+        storage = (T[]) new Object[2];
    }
    
    public HeapPriorityQueue(T[] array)
    {
-        arraySize = array.length;
-        heapArray = (T[]) new Object [arraySize+1];
-        //Make a copy of the heapArray, and initialise the new array to start from position 1.
-        System.arraycopy(array, 0, heapArray, 1, arraySize);
+        capacity = array.length;
+        storage = (T[]) new Object [capacity+1];
+        //Make a copy of the storage, and initialise the new array to start from position 1.
+        System.arraycopy(array, 0, storage, 1, capacity);
         //Create the heap.
         createHeap();
    }
    
     private void createHeap()
    {
-      for (int i = arraySize/2; i > 0; i--)
+      for (int i = capacity/2; i > 0; i--)
       {
           //Use siftDown to sort the order of each item in the tree
          siftDown(i);
@@ -48,20 +51,20 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
      */  
     private void siftDown(int i)
    {
-       //Temp used to store heapArray[i] temporarily
-        Object temp = heapArray[i];
-        int child;
+       //Temp used to store storage[i] temporarily
+        Object temp = storage[i];
+        int index;
         
         //For each item in the array
-        for(; 2*i <= arraySize; i = child){
-            child = 2*i;
+        for(; 2*i <= capacity; i = index){
+            index = 2*i;
             //If the item is not the last in the array, and it's priority is smaller than the one to the right of it then move it to that position.
-            if(child != arraySize && ((PriorityItem<T>)heapArray[child]).getPriority() < ((PriorityItem<T>)heapArray[child + 1]).getPriority()){
-                child++;
+            if(index != capacity && ((PriorityItem<T>)storage[index]).getPriority() < ((PriorityItem<T>)storage[index + 1]).getPriority()){
+                index++;
             }
             //If the priority of the parent is smaller than the smallest child then switch them.
-            if(((PriorityItem<T>)temp).getPriority() < ((PriorityItem<T>)heapArray[child]).getPriority()){
-                heapArray[i] = heapArray[child];
+            if(((PriorityItem<T>)temp).getPriority() < ((PriorityItem<T>)storage[index]).getPriority()){
+                storage[i] = storage[index];
             }
             //End the loop if none of the above apply.
             else {
@@ -69,8 +72,8 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
             }
         }
         
-        //Set heapArray[i] back to temp.
-        heapArray[i] = temp;
+        //Set storage[i] back to temp.
+        storage[i] = temp;
     } 
      
     /*
@@ -79,18 +82,18 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
     @Override
     public void add(T item, int priority){
         //If the array is full then double the size.
-          if(arraySize == heapArray.length - 1) {
+          if(capacity == storage.length - 1) {
             doubleArray();
           }
           //Add item to the end of the array
-          int pos = ++arraySize;
+          int sel = ++capacity;
           //Sift up, swapping the item for its parent where necessary so the parent has a higher priority than the child.
-          for(;pos > 1 && priority > ((PriorityItem<T>)heapArray[pos/2]).getPriority(); pos = pos/2 )
+          for(;sel > 1 && priority > ((PriorityItem<T>)storage[sel/2]).getPriority(); sel = sel/2 )
           {
-             heapArray[pos] = heapArray[pos/2];
+             storage[sel] = storage[sel/2];
           }
           //Set the item position to the new item
-          heapArray[pos] = new PriorityItem<>(item, priority);
+          storage[sel] = new PriorityItem<>(item, priority);
    }
    
     /*
@@ -98,11 +101,11 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
      */
     private void doubleArray()
    {
-      Object[] old = heapArray;
-      //Double the length of heapArray
-      heapArray = (T[]) new Object[heapArray.length * 2];
-      //Make a copy of heapArray and initialise array to start from position 1
-      System.arraycopy(old, 1, heapArray, 1, arraySize);
+      Object[] old = storage;
+      //Double the length of storage
+      storage = (T[]) new Object[storage.length * 2];
+      //Make a copy of storage and initialise array to start from position 1
+      System.arraycopy(old, 1, storage, 1, capacity);
    }
          
          
@@ -114,7 +117,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
         if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-            heapArray[1] = heapArray[arraySize--];
+            storage[1] = storage[capacity--];
             //Sort the tree
             siftDown(1);
 	} 
@@ -125,7 +128,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
      */  
     @Override
     public boolean isEmpty() {
-        return arraySize == 0;
+        return capacity == 0;
     }
 
     /*
@@ -134,12 +137,12 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
     @Override
     public String toString() {
         String result = "[";
-        for(int i = 1; i <= arraySize; i++){
+        for(int i = 1; i <= capacity; i++){
             //If there is another item in the array, insert a comma into the string.
-            if (heapArray[arraySize]!= null && i !=1) {
+            if (storage[capacity]!= null && i !=1) {
                 result = result + ", ";
             }
-            result += heapArray[i];
+            result += storage[i];
         }
         result = result + "]";
         return result;
@@ -153,7 +156,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
         if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-            return ((PriorityItem<T>) heapArray[1]).getItem();
+            return ((PriorityItem<T>) storage[1]).getItem();
         } 
     }
 }
