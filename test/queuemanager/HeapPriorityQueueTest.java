@@ -15,8 +15,8 @@ import static org.junit.Assert.*;
 /**
  *
  * @author Heather Taylor-Stanley 10002973
- * Tests:
- *  
+ * 
+ * This class tests the heap priority queue implementation. 
  */
 public class HeapPriorityQueueTest extends PriorityQueueTest{
     
@@ -38,7 +38,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
      */
     @Test
     public void testAdd() throws Exception {
-        System.out.println("add");
+        System.out.println("Add item to middle of array");
         instance.add("John Doe", 10);
         instance.add("Jeff Morrison", 20);
         instance.add("Poppy Taylor", 40);
@@ -61,7 +61,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
      */
     @Test
     public void testAddHead() throws Exception {
-        System.out.println("add");
+        System.out.println("Add new highest priority item and test head function");
         instance.add("John Doe", 10);
         instance.add("Jeff Morrison", 20);
         System.out.println("Array: " + instance.toString());
@@ -82,7 +82,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
      */
     @Test
     public void testAddEnd() throws Exception {
-        System.out.println("add");
+        System.out.println("Add new lowest priority item");
         instance.add("Jane Woods", 30);
         instance.add("Jeff Morrison", 20);
         instance.add("Dean Thomas", 12);
@@ -112,7 +112,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
         instance.add("Robert Wells", 35);
         instance.add("Dean Thomas", 12);
         instance.add("Katie Bell", 4);
-        System.out.println("toString");
+        System.out.println("Test the toString method");
         String expResult = "[(Poppy Taylor, 40), (Robert Wells, 35), (Jeff Morrison, 20), (John Doe, 10), (Jane Woods, 30), (Dean Thomas, 12), (Katie Bell, 4)]";
         String result = instance.toString();
         assertEquals(expResult, result);
