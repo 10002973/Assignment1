@@ -7,30 +7,31 @@ package queuemanager;
 
 /*
  * @author Heather Taylor-Stanley 10002973
+ *
+ * This class implements an unsorted array priority queue.
+
  * @param <T>
  */
-
-
 public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         
     /**
-     * Array in which the data will be stored.
+     * Array used to store the data.
      */
     private final Object[] storage;
 
     /**
-     * Storage array size.
+     * Capacity of the array.
      */
     private final int capacity;
 
     /**
-     * Index of the final item in the array.
+     * Position of the last item in the array.
      *
      */
     private int tailIndex;
 
     /**
-     * Creates an empty queue using the given size
+     * Creates an empty queue with a length of 'size'.
      *
      * @param size
      */
