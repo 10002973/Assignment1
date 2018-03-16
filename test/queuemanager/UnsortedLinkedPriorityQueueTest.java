@@ -14,13 +14,18 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Heather
+ * @author Heather Taylor-Stanley 10002973
+ * 
+ * This class tests the unsorted linked priority queue implementation.
  */
 public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
     
     public UnsortedLinkedPriorityQueueTest() {
     }
 
+    /*
+     * Sets up a new instance. 
+     */
     @Before
     public void setUp() {
         instance = new UnsortedLinkedPriorityQueue<>();
@@ -35,13 +40,15 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
      */
     @Test
     public void testAdd() throws Exception {
-        System.out.println("add");
+        System.out.println("Add item to end of array");
         instance.add("John Doe", 10);
         instance.add("Jane Woods", 30);
         Object item = "Jeff Morrison";
         int priority = 20;
         instance.add(item, priority);
-        System.out.println("Array: " + instance.toString());
+        String expResult = "[(Jeff Morrison, 20),(Jane Woods, 30),(John Doe, 10)]";
+        String result = instance.toString();
+        assertEquals(expResult, result);
     }
    
     /**
@@ -49,13 +56,15 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
      */
     @Test
     public void testRemoveMiddle() throws Exception {
-        System.out.println("remove");
+        System.out.println("Remove item from middle of array");
         instance.add("John Doe", 10);
         instance.add("Jane Woods", 30);
         instance.add("Jeff Morrison", 20);
         System.out.println("Array before removal: " + instance.toString());
         instance.remove();
-        System.out.println("Array after removal: " + instance.toString());
+        String expResult = "[(Jeff Morrison, 20),(John Doe, 10)]";
+        String result = instance.toString();
+        assertEquals(expResult, result);
     }
     
     /**
@@ -63,13 +72,15 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
      */
     @Test
     public void testRemoveStart() throws Exception {
-        System.out.println("remove");
+        System.out.println("Remove item from start of array");
         instance.add("Jane Woods", 30);
         instance.add("John Doe", 10);
         instance.add("Jeff Morrison", 20);
         System.out.println("Array before removal: " + instance.toString());
         instance.remove();
-        System.out.println("Array after removal: " + instance.toString());
+        String expResult = "[(Jeff Morrison, 20),(John Doe, 10)]";
+        String result = instance.toString();
+        assertEquals(expResult, result);
     }  
       
     /**
@@ -80,7 +91,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
         instance.add("John Doe", 10);
         instance.add("Jane Woods", 30);
         instance.add("Jeff Morrison", 20);
-        System.out.println("toString");
+        System.out.println("Test toString method");
         String expResult = "[(Jeff Morrison, 20),(Jane Woods, 30),(John Doe, 10)]";
         String result = instance.toString();
         assertEquals(expResult, result);
