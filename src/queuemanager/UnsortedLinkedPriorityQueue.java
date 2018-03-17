@@ -17,15 +17,15 @@ package queuemanager;
  */
 public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {  
     //This will track the head node
-    private Node<T> head;
+    private itemNode<T> head;
 
-    private static class Node<T>
+    private static class itemNode<T>
     {   
         private T item;
         private int priority;
-        private Node next;
+        private itemNode next;
 
-        public Node(T item, int priority, Node next)
+        public itemNode(T item, int priority, itemNode next)
         {
             this.item = item;
             this.priority = priority;
@@ -39,7 +39,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      */
     @Override
     public void add(T item, int priority){
-            head = new Node<>(item, priority, head);
+            head = new itemNode<>(item, priority, head);
     }
     
     /**
@@ -54,7 +54,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             int priority = head.priority;
             T pos = head.item;
             //Loops through the list and each time it encounters a higher priority, it sets the priority to the priority variable, and the item to the pos variable.
-            for (Node<T> node = head; node != null; node = node.next) {
+            for (itemNode<T> node = head; node != null; node = node.next) {
                 if (node.priority > priority) {
                     priority = node.priority;
                     pos = node.item;
@@ -75,11 +75,11 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             throw new QueueUnderflowException();
         } else {
             int priority = head.priority;        
-            Node<T> sel  = head;
-            Node<T> last = null;
+            itemNode<T> sel  = head;
+            itemNode<T> last = null;
             T pos = null;
             //Loops through the list to get the item with the highest priority. It updates the priority, pos and sel variables each time a higher priority is encountered.
-            for (Node<T> node = head; node != null; node = node.next) {
+            for (itemNode<T> node = head; node != null; node = node.next) {
                 if (node.priority > priority) {
                     priority = node.priority;
                     pos = node.item;
@@ -121,7 +121,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     @Override
     public String toString() {
         String result = "[";
-        for (Node<T> node = head; node != null; node = node.next){
+        for (itemNode<T> node = head; node != null; node = node.next){
             if (node != head) {
                 result = result + ",";
             }
