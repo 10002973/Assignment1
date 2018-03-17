@@ -18,14 +18,12 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     //This will track the head node
     private Node<T> head;
 
-    private static class Node<T>
-    {   
+    private static class Node<T> {   
         private T item;
         private int priority;
         private Node next;
 
-        public Node(T item, int priority, Node next)
-        {
+        public Node(T item, int priority, Node next) {
             this.item = item;
             this.priority = priority;
             this.next = next;
@@ -36,20 +34,22 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      *
      * This will add a node according to its priority
      */
+    @Override
     public void add(T item, int priority){
         Node<T> sel = head;
         //If the array is empty, or the item is higher than the highest priority item in the queue, then the item will be inserted in the head position.
         if (isEmpty() || head.priority < priority) {
-            head = new Node<T>(item, priority, head);
+            head = new Node<>(item, priority, head);
         }
         //This iterates through the code until the priority of the next item is either lower in priority than the item to be added, or the array ends.
-        //It then sets the node to pos.
+        //It sets the selected variable to the next node each time, so when the loop runs false, the sel variable will be set to the node before the 
+        //position the new item is to be inserted into.
         else {
             while((sel.next != null) && (sel.next.priority > priority)) {
                 sel = sel.next;
             }
             //Inserts the new item in the next node
-            sel.next = new Node<T>(item, priority, sel.next);
+            sel.next = new Node<>(item, priority, sel.next);
         }
     }
     
@@ -57,23 +57,25 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      *
      * Returns the item with the highest priority, providing the queue isn't empty.
      */
+    @Override
     public T head() throws QueueUnderflowException {
         if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-        return head.item;
-            } 
+            return head.item;
+        } 
     }
     
     /**
      *
      * Removes the item with the highest priority, providing the queue isn't empty.
      */
+    @Override
     public void remove() throws QueueUnderflowException {
         if (isEmpty()) {
             throw new QueueUnderflowException();
         } else {
-        head = head.next;
+            head = head.next;
         }
     }
     
@@ -88,7 +90,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
 
     /**
      * Adds each item to a string and returns the string.
-     * @return
+     * @return the result.
      */
     @Override
     public String toString() {
