@@ -5,13 +5,14 @@
  */
 package queuemanager;
 
-/*
+/**
  * @author Heather Taylor-Stanley 10002973
  *
  * This class implements an unsorted array priority queue.
 
  * @param <T>
  */
+
 public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         
     /**
@@ -129,7 +130,7 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
 
     /**
      * Adds each item in the array to a string and returns it.
-     * @return
+     * @return result
      */
     @Override
     public String toString() {
@@ -143,5 +144,4 @@ public class UnsortedArrayPriorityQueue<T> implements PriorityQueue<T> {
         result = result + "]";
         return result;
     }
-
 }
