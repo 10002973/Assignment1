@@ -15,6 +15,9 @@ import static org.junit.Assert.*;
  */
 public class SortedArrayPriorityQueueTest extends PriorityQueueTest{
 
+    /**
+     *
+     */
     public SortedArrayPriorityQueueTest() {
     }
 
@@ -36,9 +39,10 @@ public class SortedArrayPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of add method, of class SortedArrayPriorityQueue.
      * Checks that adding a new item to middle of the array inserts it correctly.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testAdd() throws Exception {
+    public void testAddMiddle() throws Exception {
         System.out.println("Add item to middle of array");
         instance.add("John Doe", 10);
         instance.add("Jane Woods", 30);
@@ -54,6 +58,7 @@ public class SortedArrayPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of add method, of class SortedArrayPriorityQueue.
      * Adds a new head and checks that the head function updates correctly.
+     * @throws java.lang.Exception
      */
     @Test
     public void testAddHead() throws Exception {
@@ -71,6 +76,7 @@ public class SortedArrayPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of add method, of class SortedArrayPriorityQueue.
      * Checks that adding an item with the lowest priority to the array places it at the end correctly.
+     * @throws java.lang.Exception
      */
     @Test
     public void testAddEnd() throws Exception {
@@ -89,6 +95,7 @@ public class SortedArrayPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of toString method, of class PriorityQueue.
      * Checks that the toString method prints the array in the correct format and order.
+     * @throws java.lang.Exception
      */
     @Test
     public void testToString() throws Exception {
