@@ -16,18 +16,29 @@ package queuemanager;
  */
 public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {  
     //This will track the head node
-    private itemNode<T> head;
+    private SortedLinkedPriorityQueue<T> head;
+    
+    private T item;
+    private int priority;
+    private SortedLinkedPriorityQueue next;
+    
+    /**
+     * Initialise the head variable.
+     */
+    public SortedLinkedPriorityQueue() {
+        head = null;
+    }
 
-    private static class itemNode<T> {   
-        private T item;
-        private int priority;
-        private itemNode next;
-
-        public itemNode(T item, int priority, itemNode next) {
-            this.item = item;
-            this.priority = priority;
-            this.next = next;
-        }
+    /**
+     * Set variables to the given data.
+     * @param item
+     * @param priority
+     * @param next
+     */
+    public SortedLinkedPriorityQueue(T item, int priority, SortedLinkedPriorityQueue next) {
+        this.item = item;
+        this.priority = priority;
+        this.next = next;
     }
 
     /**
@@ -36,10 +47,10 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      */
     @Override
     public void add(T item, int priority){
-        itemNode<T> sel = head;
+        SortedLinkedPriorityQueue<T> sel = head;
         //If the array is empty, or the item is higher than the highest priority item in the queue, then the item will be inserted in the head position.
         if (isEmpty() || head.priority < priority) {
-            head = new itemNode<>(item, priority, head);
+            head = new SortedLinkedPriorityQueue<>(item, priority, head);
         }
         //This iterates through the code until the priority of the next item is either lower in priority than the item to be added, or the array ends.
         //It sets the selected variable to the next node each time, so when the loop runs false, the sel variable will be set to the node before the 
@@ -49,7 +60,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
                 sel = sel.next;
             }
             //Inserts the new item in the next node
-            sel.next = new itemNode<>(item, priority, sel.next);
+            sel.next = new SortedLinkedPriorityQueue<>(item, priority, sel.next);
         }
     }
     
@@ -95,7 +106,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     @Override
     public String toString() {
         String result = "[";
-        for (itemNode<T> node = head; node != null; node = node.next){
+        for (SortedLinkedPriorityQueue<T> node = head; node != null; node = node.next){
             if (node != head) {
                 result = result + ",";
             }
