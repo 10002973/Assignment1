@@ -39,7 +39,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      */
     @Override
     public void add(T item, int priority){
-            head = new Node<T>(item, priority, head);
+            head = new Node<>(item, priority, head);
     }
     
     /**
@@ -94,15 +94,13 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
             else{
                 sel = head;
                 //Gets the node before the highest priority item.
-                while(sel != null && sel.item != pos)
-                {
+                while(sel != null && sel.item != pos) {
                    last = sel;
                    sel = sel.next;
                 }
                 //Deletes the sel node (highest priority item).
                 last.next = sel.next;
             }
-
         }
     }
     
@@ -118,7 +116,7 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     /**
      *
      * Returns all the items in the list in a string format.
-     * @return 
+     * @return result.
      */
     @Override
     public String toString() {
@@ -131,7 +129,6 @@ public class UnsortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
         }
         result = result + "]";
         return result;
-    }
-    
+    } 
 }
 
