@@ -20,6 +20,9 @@ import static org.junit.Assert.*;
  */
 public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
     
+    /**
+     *
+     */
     public UnsortedLinkedPriorityQueueTest() {
     }
 
@@ -37,9 +40,10 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
 
     /**
      * Test of add method, of class UnsortedLinkedPriorityQueue. Checks that adding an item with a lower priority correctly adds it to the end of the queue.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testAdd() throws Exception {
+    public void testAddEnd() throws Exception {
         System.out.println("Add item to end of array");
         instance.add("John Doe", 10);
         instance.add("Jane Woods", 30);
@@ -53,6 +57,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
    
     /**
      * Test of remove method, of class UnsortedLinkedPriorityQueue. Checks that removing an item from the middle of the array functions correctly.
+     * @throws java.lang.Exception
      */
     @Test
     public void testRemoveMiddle() throws Exception {
@@ -69,6 +74,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
     
     /**
      * Test of remove method, of class UnsortedLinkedPriorityQueue. Checks that removing an item from the start of the array functions correctly.
+     * @throws java.lang.Exception
      */
     @Test
     public void testRemoveStart() throws Exception {
@@ -85,6 +91,7 @@ public class UnsortedLinkedPriorityQueueTest extends PriorityQueueTest{
       
     /**
      * Test of toString method, of class PriorityQueue. Checks that the toString method prints out the array, and that the array itself is stored in an unordered manner.
+     * @throws java.lang.Exception
      */
     @Test
     public void testToString() throws Exception {
