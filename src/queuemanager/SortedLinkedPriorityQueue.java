@@ -16,14 +16,14 @@ package queuemanager;
  */
 public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {  
     //This will track the head node
-    private Node<T> head;
+    private itemNode<T> head;
 
-    private static class Node<T> {   
+    private static class itemNode<T> {   
         private T item;
         private int priority;
-        private Node next;
+        private itemNode next;
 
-        public Node(T item, int priority, Node next) {
+        public itemNode(T item, int priority, itemNode next) {
             this.item = item;
             this.priority = priority;
             this.next = next;
@@ -36,10 +36,10 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
      */
     @Override
     public void add(T item, int priority){
-        Node<T> sel = head;
+        itemNode<T> sel = head;
         //If the array is empty, or the item is higher than the highest priority item in the queue, then the item will be inserted in the head position.
         if (isEmpty() || head.priority < priority) {
-            head = new Node<>(item, priority, head);
+            head = new itemNode<>(item, priority, head);
         }
         //This iterates through the code until the priority of the next item is either lower in priority than the item to be added, or the array ends.
         //It sets the selected variable to the next node each time, so when the loop runs false, the sel variable will be set to the node before the 
@@ -49,7 +49,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
                 sel = sel.next;
             }
             //Inserts the new item in the next node
-            sel.next = new Node<>(item, priority, sel.next);
+            sel.next = new itemNode<>(item, priority, sel.next);
         }
     }
     
@@ -95,7 +95,7 @@ public class SortedLinkedPriorityQueue<T> implements PriorityQueue<T> {
     @Override
     public String toString() {
         String result = "[";
-        for (Node<T> node = head; node != null; node = node.next){
+        for (itemNode<T> node = head; node != null; node = node.next){
             if (node != head) {
                 result = result + ",";
             }
