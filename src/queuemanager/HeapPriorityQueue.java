@@ -12,46 +12,50 @@ package queuemanager;
  * @author Heather Taylor-Stanley 10002973
  * 
  * This class implements a heap priority queue.
+ * @param <T>
  */
 
-
-public class HeapPriorityQueue<T> implements PriorityQueue<T>{  
+public class HeapPriorityQueue<T> implements PriorityQueue<T> {  
    //Stores the size of the array
    private int capacity;            
    //Stores the array
    private Object[] storage; 
 
-   public HeapPriorityQueue()
-   {
+    /**
+     * Create heap, and set storage array to 2.
+     */
+    public HeapPriorityQueue() {
         capacity = 0;
         storage = (T[]) new Object[2];
    }
    
-   public HeapPriorityQueue(T[] array)
-   {
+    /**
+     * Create heap using given array length.
+     * @param array
+     */
+    public HeapPriorityQueue(T[] array) {
         capacity = array.length;
         storage = (T[]) new Object [capacity+1];
         //Make a copy of the storage, and initialise the new array to start from position 1.
         System.arraycopy(array, 0, storage, 1, capacity);
         //Create the heap.
         createHeap();
-   }
+    }
    
-    private void createHeap()
-   {
-      for (int i = capacity/2; i > 0; i--)
-      {
-          //Use siftDown to sort the order of each item in the tree
-         siftDown(i);
+    /**
+     * Use siftDown to sort the order of each item in the tree.
+     */
+    private void createHeap() {
+        for (int i = capacity/2; i > 0; i--){
+            siftDown(i);
       }
    }
     
-    /*
+    /**
      * Sort the heap so the parent is larger than the child.
      */  
-    private void siftDown(int i)
-   {
-       //Temp used to store storage[i] temporarily
+    private void siftDown(int i) {
+        //Temp used to store storage[i] temporarily
         Object temp = storage[i];
         int index;
         
@@ -76,41 +80,39 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
         storage[i] = temp;
     } 
      
-    /*
+    /**
      * Insert a new item into the array.
      */  
     @Override
     public void add(T item, int priority){
         //If the array is full then double the size.
-          if(capacity == storage.length - 1) {
+        if(capacity == storage.length - 1) {
             doubleArray();
-          }
-          //Add item to the end of the array
-          int sel = ++capacity;
-          //Sift up, swapping the item for its parent where necessary so the parent has a higher priority than the child.
-          for(;sel > 1 && priority > ((PriorityItem<T>)storage[sel/2]).getPriority(); sel = sel/2 )
-          {
-             storage[sel] = storage[sel/2];
-          }
-          //Set the item position to the new item
-          storage[sel] = new PriorityItem<>(item, priority);
+        }
+        //Add item to the end of the array
+        int sel = ++capacity;
+        //Sift up, swapping the item for its parent where necessary so the parent has a higher priority than the child.
+        for(;sel > 1 && priority > ((PriorityItem<T>)storage[sel/2]).getPriority(); sel = sel/2 ){
+            storage[sel] = storage[sel/2];
+        }
+        //Set the item position to the new item
+        storage[sel] = new PriorityItem<>(item, priority);
    }
    
-    /*
-     * Double the size of the array
+    /**
+     * Double the size of the array.
      */
-    private void doubleArray()
-   {
-      Object[] old = storage;
-      //Double the length of storage
-      storage = (T[]) new Object[storage.length * 2];
-      //Make a copy of storage and initialise array to start from position 1
-      System.arraycopy(old, 1, storage, 1, capacity);
+    private void doubleArray(){
+        Object[] old = storage;
+        //Double the length of storage
+        storage = (T[]) new Object[storage.length * 2];
+        //Make a copy of storage and initialise array to start from position 1
+         System.arraycopy(old, 1, storage, 1, capacity);
    }
          
          
-    /*
-     * Remove the highest priority item in the array which is at the roor of the tree.
+    /**
+     * Remove the highest priority item in the array which is at the root of the tree.
      */  
    @Override
     public void remove() throws QueueUnderflowException {
@@ -123,7 +125,8 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
 	} 
     }
    
-    /*
+    
+    /**
      * Check if the array is empty.
      */  
     @Override
@@ -131,9 +134,12 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
         return capacity == 0;
     }
 
-    /*
+    
+    /**
      * Output the array into a string.
-     */  
+     * @return the result.
+     */
+  
     @Override
     public String toString() {
         String result = "[";
@@ -148,7 +154,7 @@ public class HeapPriorityQueue<T> implements PriorityQueue<T>{
         return result;
     }
     
-    /*
+    /**
      * Return the highest priority item.
      */  
    @Override
