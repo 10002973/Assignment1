@@ -20,24 +20,36 @@ import static org.junit.Assert.*;
  */
 public class HeapPriorityQueueTest extends PriorityQueueTest{
     
+    /**
+     *
+     */
     public HeapPriorityQueueTest() {
     }
     
+    /**
+     * Set up the instance.
+     */
     @Before
+    @Override
     public void setUp() {
         instance = new HeapPriorityQueue<>();
     }
     
+    /**
+     *
+     */
     @After
+    @Override
     public void tearDown() {
     }
 
     /**
      * Test of add method, of class HeapPriorityQueue.
      * Checks that adding a new item to middle of the array inserts it correctly without disrupting the heap structure.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testAdd() throws Exception {
+    public void testAddMiddle() throws Exception {
         System.out.println("Add item to middle of array");
         instance.add("John Doe", 10);
         instance.add("Jeff Morrison", 20);
@@ -58,6 +70,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of add method, of class HeapPriorityQueue.
      * Outputs current array string and head, then adds a new head and checks that the head function updates correctly.
+     * @throws java.lang.Exception
      */
     @Test
     public void testAddHead() throws Exception {
@@ -79,6 +92,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of add method, of class HeapPriorityQueue.
      * Checks that adding an item with the lowest priority to the array places it in the heap correctly.
+     * @throws java.lang.Exception
      */
     @Test
     public void testAddEnd() throws Exception {
@@ -102,6 +116,7 @@ public class HeapPriorityQueueTest extends PriorityQueueTest{
     /**
      * Test of toString method, of class HeapPriorityQueue.
      * Checks that the toString method prints the array in the correct format and order.
+     * @throws java.lang.Exception
      */
     @Test
     public void testToString() throws Exception {
